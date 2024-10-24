@@ -10,25 +10,46 @@ func main() {
 
 }
 
+// func FifthAndSkip(str string) string {
+// 	if len(str) < 5 {
+// 		return "Invalid Input\n"
+// 	}
+// 	word := ""
+// 	for _, ch := range str{
+// 		if ch == ' '{
+// 			continue
+// 		}
+// 		word += string(ch)
+// 	}
+// 	result := ""
+// 	for i := 0; i < len(word); i += 5{
+// 		if i+5 >  len(word){
+// 			result += word[i:]
+// 		} else {
+// 			result += word[i:i+5] + " "
+// 		}
+// 		i++
+// 	}
+// 	return result + "\n"
+// }
+
 func FifthAndSkip(str string) string {
-	if len(str) < 5 {
+	count := 0
+	runes := []rune{}
+	if len(str) < 5{
 		return "Invalid Input\n"
 	}
-	word := ""
 	for _, ch := range str{
 		if ch == ' '{
 			continue
 		}
-		word += string(ch)
-	}
-	result := ""
-	for i := 0; i < len(word); i += 5{
-		if i+5 >  len(word){
-			result += word[i:]
-		} else {
-			result += word[i:i+5] + " "
+		if count == 5{
+			runes = append(runes, ' ')
+			count = 0
+			continue
 		}
-		i++
+		count++
+		runes = append(runes, ch)
 	}
-	return result + "\n"
+	return string(runes) + "\n"
 }
